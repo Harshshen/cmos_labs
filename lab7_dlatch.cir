@@ -1,0 +1,28 @@
+*D latch*
+Vclk 2 0 pulse(0 5 0 0 0 10m 100m)
+Va 1 0 pulse(0 5 0 0 0 20m 100m)
+Vr 8 0 dc 0
+Vdd 4 0 dc 5
+
+
+
+.model nmod nmos level=54 version=4.7
+.model pmod pmos level=54 version=4.7
+
+M1 1 2 3 3 nmod w=100u L=10u
+M2 5 3 4 4 pmod w=100u L=10u
+M3 5 3 0 0 nmod w=100u L=10u
+M4 6 5 4 4 pmod w=100u L=10u
+M5 5 6 0 0 nmod w=100u L=10u
+M6 6 7 3 3 nmod w=100u L=10u
+M7 3 8 0 0 nmod w=100u L=10u
+M8 7 2 4 4 pmod w=100u L=10u
+M9 7 2 0 0 nmod w=100u L=10u
+
+
+.tran 0.1m 100m
+.control
+run
+plot V(1) V(6) V(2)
+.endc
+.end

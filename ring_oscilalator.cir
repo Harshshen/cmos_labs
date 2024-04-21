@@ -1,0 +1,29 @@
+**ring oscilalator**
+**gate drain source** 
+
+Va 1 0 dc 5v
+vdd 2 0 dc 5v
+
+
+
+.subckt invertor 8 9 10
+m1 10 9 0 0 nmod w=100u l=10u
+m2 10 8 9 9 pmod w =100u l = 10u
+.model nmod nmos level=54 version=4.7
+.model pmod pmos level=54 version=4.7
+.ends
+
+m1 1 2 3 invertor
+m2 3 2 4 invertor
+m3 4 2 5 invertor
+m4 5 2 6 invertor
+m5 6 2 1 invertor
+
+.tran 0.1m 100m
+.control
+run
+plot V(1)
+.endc
+.end
+
+

@@ -1,0 +1,19 @@
+** 3 NOR
+Vd 7 0 dc 5
+Va 5 0 dc 5
+Vb 3 0 dc 5
+Vc 1 0 pulse(0 5 0 0 0 10m 20m)
+.model nmod pmos level=54 version=4.7
+.model pmod nmos level=54 version=4.7
+M1 2 1 0 0 pmod w=100u l=10u
+M2 4 3 2 2 pmod w=100u l=10u
+M3 6 5 4 4 pmod w=100u l=10u
+M4 6 5 7 7 nmod w=100u l=10u
+M5 6 3 7 7 nmod w=100u l=10u
+M6 6 1 7 7 nmod w=100u l=10u
+.tran 0.1m 40m
+.control
+run
+plot v(6) V(1)
+.endc
+.end

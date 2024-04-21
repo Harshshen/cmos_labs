@@ -1,0 +1,33 @@
+*6T SRAM cell
+
+vdd 1 0 dc 5V
+*vbitb 2 0 dc 1V
+*vbit 3 0 dc 1V
+vwl 8 0 dc 5V
+Cbit 3 0 100pf 
+Cbitb 2 0 100pf 
+
+.model nmod nmos level=54 version=4.7
+.model pmod pmos level=54 version=4.7
+
+m1 4 5 1 1 pmod w=0.6u l=0.18u
+m2 4 5 0 0 nmod w=1.8u l=0.18u
+m3 5 4 1 1 pmod w=0.6u l=0.18u
+m4 5 4 0 0 nmod w=1.8u l=0.18u
+m5 4 8 3 3 nmod w=1.2u l=0.18u
+m6 5 8 2 2 nmod w=1.2u l=0.18u
+
+*where 
+*4 is Q 
+*5 is Q_BAR
+*3 is BIT
+*2 is BIT_BAR
+*8 is WORD_LINE
+
+.control
+tran 0.1ns 0.02ms
+run
+plot V(4) V(5)
+plot V(2) V(3)
+.endc
+.end
